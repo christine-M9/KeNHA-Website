@@ -14,8 +14,8 @@ with app.app_context():
         )
         db.session.add(project)
 
-        # Seed services and associate them with the project
-        for _ in range(fake.random_int(min=1, max=5)):  # Adjust max as needed
+        # Seed services and associating them with the project
+        for _ in range(fake.random_int(min=1, max=5)):  
             service = Service(
                 title=fake.sentence(),
                 description=fake.paragraph()
@@ -28,7 +28,7 @@ with app.app_context():
             name=fake.name(),
             email=fake.email(),
             message=fake.paragraph(),
-            project_id=fake.random_int(min=1, max=5)  # Assuming you have 5 projects
+            project_id=fake.random_int(min=1, max=5)  
         )
         db.session.add(contact)
 
