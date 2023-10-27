@@ -130,6 +130,25 @@ def delete_contact(id):
     else:
         return jsonify({'message': 'Contact not found'}), 404
 
+
+@app.route('/api/tasks', methods=['POST'])
+def create_task():
+    data = request.get_json()
+    title = data.get('title')
+    location = data.get('location')
+    maintenance_type = data.get('maintenanceType')
+    estimated_completion_time = data.get('estimatedCompletionTime')
+    task = Task(
+        title=title,
+        location=location,
+        maintenance_type=maintenance_type,
+        estimated_completion_time=estimated_completion_time
+    )
+    db.session.add(task)
+    db.session.commit()
+    return jsonify(task.serialize()), 201
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
